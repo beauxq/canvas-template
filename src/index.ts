@@ -37,9 +37,15 @@ function resizeCanvas() {
 // (And it doesn't look like the person asking the question in stackoverflow is using a canvas. Maybe it's not the same issue. But the solution works.)
 
 // https://stackoverflow.com/questions/53487190/why-is-chrome-shrinking-the-view-in-responsive-mode
-window.onorientationchange = function() { 
+window.onorientationchange = function() {
     const htmlElement =  document.getElementsByTagName("html")[0];
     const bodyElement = document.getElementsByTagName("body")[0];
+
+    // TODO: onorientationchange is deprecated
+    // find out whether the replacement works for addressing this bug (or whether the bug is still relevant)
+    // screen.orientation.addEventListener("change", () => {
+    // the event passed from the new event listener has: portrait-primary, portrait-secondary, landscape-primary, or landscape-secondary
+    // I don't know if that's better than looking at window.innerWidth < window.innerHeight
 
     if(window.innerWidth < window.innerHeight) {
         // landscape to portrait
