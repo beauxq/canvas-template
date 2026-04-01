@@ -1,10 +1,10 @@
 
 
 class App {
-    private canvas: HTMLCanvasElement;
+    private readonly canvas: HTMLCanvasElement;
     private context: CanvasRenderingContext2D;
 
-    constructor(width: number, height: number) {
+    public constructor(width: number, height: number) {
         this.canvas = document.getElementById('c') as HTMLCanvasElement;
         this.canvas.width = width;
         this.canvas.height = height;
@@ -30,13 +30,13 @@ class App {
         });
     }
 
-    public resize(width: number, height: number) {
+    public resize(width: number, height: number): void {
         this.canvas.width = width;
         this.canvas.height = height;
         this.context = this.canvas.getContext('2d')!;
     }
 
-    private draw() {
+    private draw(): void {
         const now = Math.abs(Math.floor(Date.now() / 10) % 510 - 255);
         this.context.fillStyle = `rgb(32, ${now}, 64)`;
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);

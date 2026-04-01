@@ -1,17 +1,14 @@
 import App from './App';
 
-let app: App | undefined;
+let app: App | null = null;
 
-window.onload = () => {
+window.onload = (): void => {
     const width = window.innerWidth;
     const height = window.innerHeight;
     app = new App(width, height);
 }
 
-// resize the canvas to fill browser window dynamically
-window.addEventListener('resize', resizeCanvas, false);
-
-function resizeCanvas() {
+const resizeCanvas = (): void => {
     console.log(`browserZoomLevel: ${window.devicePixelRatio}`);
     // ^ always 3 on my phone (including with l2p bug)
 
@@ -23,6 +20,9 @@ function resizeCanvas() {
 
     app?.resize(width, height);
 }
+
+// resize the canvas to fill browser window dynamically
+window.addEventListener('resize', resizeCanvas, false);
 
 // I had an issue where
 // switching from landscape to portrait

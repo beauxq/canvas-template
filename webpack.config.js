@@ -1,11 +1,15 @@
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const isProd = process.env.NODE_ENV === 'production'
   || process.argv.some((arg) => { return arg === '--mode=production'; });
 
 console.log('found production:', isProd);
 
-module.exports = {
+export default {
   entry: './src/index.ts',
   devtool: isProd ? undefined : 'inline-source-map',
   module: {
